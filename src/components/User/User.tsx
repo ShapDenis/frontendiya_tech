@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
-import {UserTypes} from './type.ts';
+import {UsersTypes} from './type.ts';
 import users from '../../assets/users.svg';
 import userIcon from '../../assets/users.svg';
 import notRepoIcons from '../../assets/not-repo-icons.svg';
 import EmptyResult from "../EmptyResult/EmptyResult.tsx";
 
 interface UserProps {
-  data: UserTypes;
+  data: UsersTypes;
 }
 
 const UserComponent: React.FC<UserProps> = ({data}) => {
-  const {user, public_repos} = data;
+  const {user, public_reports} = data;
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(public_repos.length / itemsPerPage);
+  const totalPages = Math.ceil(public_reports.length / itemsPerPage);
 
   const startIdx = (currentPage - 1) * itemsPerPage;
-  const endIdx = Math.min(startIdx + itemsPerPage, public_repos.length);
-  const currentRepos = public_repos.slice(startIdx, endIdx);
+  const endIdx = Math.min(startIdx + itemsPerPage, public_reports.length);
+  const currentRepos = public_reports.slice(startIdx, endIdx);
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
@@ -95,7 +95,7 @@ const UserComponent: React.FC<UserProps> = ({data}) => {
       </div>
       <div className="flex items-center justify-end mt-4">
         <div className="flex items-center">
-          <span className="mr-2 text-slate-500">{`${startIdx + 1}-${endIdx} of ${public_repos.length} items`}</span>
+          <span className="mr-2 text-slate-500">{`${startIdx + 1}-${endIdx} of ${public_reports.length} items`}</span>
           <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}

@@ -1,4 +1,4 @@
-export interface User {
+export interface UserTypes {
   login: string;
   id: number;
   node_id: string;
@@ -40,7 +40,7 @@ export interface Repo {
   description: string | null;
 }
 
-export interface UserTypes {
-  user: User;
-  public_repos: Repo[];
+export interface UsersTypes {
+  user: UserTypes;
+  public_reports: Repo[];
 }
