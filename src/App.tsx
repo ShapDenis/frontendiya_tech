@@ -5,27 +5,39 @@ import searchIcon from "../src/assets/search.svg";
 import {useEffect, useState} from "react";
 import services from "./services";
 import User from "./components/User/User.tsx";
-import {UserTypes} from "./components/User/type.ts";
+import {Repo, UserTypes} from "./components/User/type.ts";
+
+interface UserData {
+  user: UserTypes;
+  public_repos: Repo[];
+}
 
 function App() {
   const [search, setSearch] = useState<string>("");
-  const [data, setData] = useState<UserTypes | null>(null);
+  const [data, setData] = useState<UserData | null>(null);
   const [timeoutId, setTimeoutId] = useState<number | null>(null);
 
   useEffect(() => {
     if (timeoutId) {
-      clearTimeout(timeoutId); // Clear previous timeout
+      clearTimeout(timeoutId);
     }
 
-    const newTimeoutId = setTimeout(() => {
+    const newTimeoutId = window.setTimeout(() => {
       services.fetchData.getUser(search)
-      .then((res) => setData(res))
+      .then((res) => {
+        return services.fetchData.getUserRepository(search)
+        .then((repos) => {
+          setData({
+            user: res,
+            public_repos: repos
+          });
+        });
+      })
       .catch(() => setData(null));
-    }, 1000); // 1-second delay
+    }, 1000);
 
     setTimeoutId(newTimeoutId);
 
-    // Cleanup function to clear timeout on component unmount or search change
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);

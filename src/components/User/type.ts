@@ -1,4 +1,4 @@
-export interface UserTypes {
+export interface User {
   login: string;
   id: number;
   node_id: string;
@@ -31,4 +31,16 @@ export interface UserTypes {
   following: number;
   created_at: string;
   updated_at: string;
+}
+
+export interface Repo {
+  id: number;
+  name: string;
+  html_url: string;
+  description: string | null;
+}
+
+export interface UserTypes {
+  user: User;
+  public_repos: Repo[];
 }

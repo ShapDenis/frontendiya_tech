@@ -3,11 +3,12 @@ import React from "react";
 interface EmptyResultProps {
   icon: string;
   text: string;
+  style?: React.CSSProperties;
 }
 
-const EmptyResult: React.FC<EmptyResultProps> = ({icon, text}) => {
+const EmptyResult: React.FC<EmptyResultProps> = ({icon, text, style}) => {
   return (
-  <div className="flex flex-col items-center justify-center p-4 h-hvh">
+  <div style={style} className="flex flex-col items-center justify-center p-4 h-hvh">
     <img
     src={icon}
     className="size-28 mb-4"
