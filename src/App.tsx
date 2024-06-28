@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/Header/Header.tsx";
 import EmptyResult from "./components/EmptyResult/EmptyResult.tsx";
 import searchIcon from "../src/assets/search.svg";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import services from "./services";
 import User from "./components/User/User.tsx";
 import {Repo, UserTypes} from "./components/User/type.ts";
@@ -12,7 +12,7 @@ interface UserData {
   public_repos: Repo[];
 }
 
-function App() {
+const App: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<UserData | null>(null);
   const [timeoutId, setTimeoutId] = useState<number | null>(null);
