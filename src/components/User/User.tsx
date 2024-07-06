@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { UsersTypes } from "./type.ts";
 import UsersIcon from "@assets/users.svg?react";
 import UserIcon from "@assets/user.svg?react";
@@ -9,7 +9,7 @@ interface UserProps {
 	data: UsersTypes;
 }
 
-const UserComponent: React.FC<UserProps> = ({ data }) => {
+const UserComponent = ({ data }: UserProps) => {
 	const { user, public_reports } = data;
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 4;
@@ -75,7 +75,7 @@ const UserComponent: React.FC<UserProps> = ({ data }) => {
 				? <EmptyResult
 					icon={<NotRepoIcons />}
 					text="Repository list is empty"
-					style={{ display: "flex", height: "auto", alignItems: "center", width: "50%" }}
+					additionalClasses="flex align-center w-full"
 				/>
 				: <div className="p-14 pl-3 min-w-[1100px] max-w-[1100px]">
 					<h2 className="text-5xl md:font-semibold mb-7">Repositories ({user.public_repos})</h2>
@@ -112,11 +112,13 @@ const UserComponent: React.FC<UserProps> = ({ data }) => {
 									? (<span key={index} className="px-4 py-2 mx-1 rounded bg-blue-50 text-gray-700">
               {page}
             </span>)
-									: (<button key={index}
-														 onClick={() => setCurrentPage(page)}
-														 className={`px-4 py-2 mx-1 rounded ${
-															 currentPage === page ? "bg-blue-600 text-white" : "bg-blue-50 text-gray-700"
-														 }`}>
+									: (<button
+											key={index}
+											onClick={() => setCurrentPage(page)}
+											className={`px-4 py-2 mx-1 rounded ${
+												currentPage === page ? "bg-blue-600 text-white" : "bg-blue-50 text-gray-700"
+											}`}
+										>
 											{page}
 										</button>
 									))}

@@ -1,60 +1,42 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import "./App.css";
 import Header from "@components/Header/Header.tsx";
 import EmptyResult from "@components/EmptyResult/EmptyResult.tsx";
 import SearchIcon from "@assets/search.svg?react";
-import React, { useEffect, useState } from "react";
-import services from "./services";
 import User from "@components/User/User.tsx";
-import { UserTypes, Repo, UsersTypes } from "@components/User/type.ts";
+import services from "./services";
 
-const App: React.FC = () => {
+const fetchUserData = async (search: string) => {
+	const user = await services.fetchData.getUser(search);
+	const repos = await services.fetchData.getUserRepository(search);
+	return { user, public_reports: repos };
+};
+
+function App() {
 	const [search, setSearch] = useState<string>("");
-	const [data, setData] = useState<UsersTypes | null>(null);
-	const [timeoutId, setTimeoutId] = useState<number | null>(null);
-
-	useEffect(() => {
-		if (timeoutId) {
-			clearTimeout(timeoutId);
-		}
-		const newTimeoutId = window.setTimeout(() => {
-			if (search) {
-				services.fetchData.getUser(search)
-					.then((res: UserTypes) => {
-						return services.fetchData.getUserRepository(search)
-							.then((repos: Repo[]) => {
-								setData({
-									user: res,
-									public_reports: repos,
-								});
-							});
-					})
-					.catch(() => setData(null));
-			}
-		}, 1000);
-
-
-		setTimeoutId(newTimeoutId);
-		if (search === "") {
-			setData(null);
-		}
-		return () => {
-			if (timeoutId) {
-				clearTimeout(timeoutId);
-			}
-		};
-	}, [search]);
+	const { data, isError, isLoading } = useQuery({
+		queryKey: ["userData", search],
+		queryFn: () => fetchUserData(search),
+		enabled: !!search,
+		retry: false,
+		refetchOnWindowFocus: false,
+	});
 
 	return (
 		<>
 			<Header setData={setSearch} />
-			{data
-				? <User data={data} />
-				: <EmptyResult
-					icon={<SearchIcon />}
-					text="Start with searching a GitHub user"
-				/>}
+			{isLoading && <EmptyResult icon={<SearchIcon />} text="Loading..." />}
+			{isError && <EmptyResult icon={<SearchIcon />} text="Failed to fetch data" />}
+			{data ? (
+				<User data={data} />
+			) : (
+				!isLoading && !isError && (
+					<EmptyResult icon={<SearchIcon />} text="Start with searching a GitHub user" />
+				)
+			)}
 		</>
 	);
-};
+}
 
 export default App;

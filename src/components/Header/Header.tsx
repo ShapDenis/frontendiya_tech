@@ -1,4 +1,3 @@
-import React from "react";
 import LogoIcon from "@assets/logo.svg?react";
 import SearchIcon from "@assets/search.svg?react";
 
@@ -6,7 +5,7 @@ interface HeaderProps {
 	setData: (value: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ setData }) => {
+const Header = ({ setData }: HeaderProps) => {
 	return (
 		<div className="flex items-center h-18 bg-blue-700 p-4 shadow-md">
 			<div className="flex gap-4 items-center pl-4">
