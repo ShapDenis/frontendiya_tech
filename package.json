@@ -13,11 +13,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.49.2",
     "axios": "^1.7.2",
-    "classnames": "^2.5.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-query": "^3.39.3",
-    "vite-plugin-dts": "^3.9.1"
+    "classnames": "^2.5.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -60,6 +56,10 @@
     "typescript": "^5.2.2",
     "typescript-eslint": "^7.14.1",
     "vite": "^5.3.1",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-query": "^3.39.3",
+    "vite-plugin-dts": "^3.9.1"
   }
 }
