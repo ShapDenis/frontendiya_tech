@@ -6,15 +6,17 @@ export default {
 			const response = await axios.get(`https://api.github.com/users/${user}`);
 			return response.data;
 		} catch (error) {
-			throw new Error("Failed to fetch data from GitHub API");
+			return error;
 		}
 	},
 	getUserRepository: async (user: string) => {
 		try {
-			const response = await axios.get(`https://api.github.com/users/${user}/repos`);
+			const response = await axios.get(
+				`https://api.github.com/users/${user}/repos`
+			);
 			return response.data;
 		} catch (error) {
-			throw new Error("Failed to fetch data from GitHub API");
+			return error;
 		}
 	},
 };
