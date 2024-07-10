@@ -1,9 +1,9 @@
-import axios from "axios";
+import axiosInstance from "@/shared/api/axiosInstance.ts";
 
 export default {
 	getUser: async (user: string) => {
 		try {
-			const response = await axios.get(`https://api.github.com/users/${user}`);
+			const response = await axiosInstance.get(`/users/${user}`);
 			return response.data;
 		} catch (error) {
 			return error;
@@ -11,9 +11,7 @@ export default {
 	},
 	getUserRepository: async (user: string) => {
 		try {
-			const response = await axios.get(
-				`https://api.github.com/users/${user}/repos`
-			);
+			const response = await axiosInstance.get(`/users/${user}/repos`);
 			return response.data;
 		} catch (error) {
 			return error;

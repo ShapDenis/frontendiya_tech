@@ -5,11 +5,7 @@ import path from "path";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
-	plugins: [
-		svgr(),
-		dts(),
-		react(),
-	],
+	plugins: [svgr(), dts(), react()],
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
@@ -17,5 +13,8 @@ export default defineConfig({
 			"@components": path.resolve(__dirname, "./src/components"),
 			"@services": path.resolve(__dirname, "./src/services "),
 		},
+	},
+	define: {
+		"process.env": process.env,
 	},
 });

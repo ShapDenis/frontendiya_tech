@@ -34,7 +34,7 @@ build/
 .vite-inspect
 
 # Local env files
-.env
+src/.env
 .env.*
 !.env.example
 
