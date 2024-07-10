@@ -11,10 +11,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@tanstack/react-query": "^5.49.2",
+    "axios": "^1.7.2",
+    "classnames": "^2.5.1",
+    "dotenv": "^16.4.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -30,11 +30,13 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.5.0",
+    "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.14.1",
     "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
@@ -49,11 +51,16 @@
     "globals": "^15.6.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.7",
+    "postcss": "^8.4.38",
     "prettier": "^3.3.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-query": "^3.39.3",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
     "typescript-eslint": "^7.14.1",
     "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1",
     "vite-plugin-svgr": "^4.2.0"
   }
 }

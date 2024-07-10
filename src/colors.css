@@ -1,0 +1,14 @@
+
+:root {
+    --primary: #646cff;
+    --primary-hover: #535bf2;
+    --secondary: #61dafb;
+    --secondary-hover: #1a1a1a;
+    --text: #213547;
+    --background: #ffffff;
+    --button: #f9f9f9;
+    --button-border: transparent;
+    --link: inherit;
+    --link-hover: #747bff;
+    --grey: #888;
+}
